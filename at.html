@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Technology Computer Training Center</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 40px;
+    }
+    img {
+      width: 200px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      background-color: white;
+      display: inline-block;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+      max-width: 400px;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="logo.png" alt="Training Center Logo">
+  <h1>ADVANCED TECHNOLOGY COMPUTER TRAINING CENTER</h1>
+  <p>Please fill in the form below to register:</p>
+
+  <form id="registrationForm">
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" name="fullname" required>
+
+    <label for="age">Age</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address" required>
+
+    <label for="field">Select Field</label>
+    <select id="field" name="field" required>
+      <option value="">-- Choose an option --</option>
+      <option value="Computer Training">Computer Training</option>
+      <option value="Spoken English">Spoken English</option>
+    </select>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div class="message" id="thankYouMessage" style="display:none;">
+    Thank you for your registration!
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const message = document.getElementById('thankYouMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent page reload
+
+      // Get form values
+      const data = {
+        fullname: form.fullname.value,
+        age: form.age.value,
+        phone: form.phone.value,
+        address: form.address.value,
+        field: form.field.value
+      };
+
+      // Store in localStorage (for demo purpose)
+      let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+      registrations.push(data);
+      localStorage.setItem('registrations', JSON.stringify(registrations));
+
+      // Reset form
+      form.reset();
+
+      // Show thank you message
+      message.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
